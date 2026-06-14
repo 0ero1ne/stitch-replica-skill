@@ -258,6 +258,8 @@ This phase follows the same responsibility as `stitch-to-vue-replica`:
 public/ -> same-name Vue3 project
 ```
 
+Run the Vue generation phase in high-fidelity replica mode. Navigation may be normalized for Vue Router, but page bodies must be converted from the source HTML DOM, CSS, assets, images, icons, backgrounds, and layout as literally as possible. Do not redesign the page body. Do not use DESIGN.md to override concrete source HTML visuals.
+
 Create:
 
 ```txt
@@ -363,16 +365,24 @@ Forbidden:
 - copying source HTML into the Vue project as runtime pages
 - generating only one page when multiple pages exist
 - mechanically preserving obviously wrong navigation links
+- redesigning the page body
+- using `DESIGN.md` to override concrete source HTML visuals
+- replacing images, icons, backgrounds, masks, gradients, or overlays with placeholders
+- silently ignoring missing assets
 - unrelated UI frameworks
 - sacrificing visual fidelity for shorter code
 
 Required:
 
+- preserve source HTML DOM structure as literally as possible
+- preserve source CSS, inline styles, style tags, linked CSS, backgrounds, masks, gradients, overlays, and layout
+- preserve source assets, images, icons, fonts, and runtime paths
 - preserve Stitch visual structure
-- preserve major sections
+- preserve major and minor sections
 - preserve main copy
-- preserve card counts and visual hierarchy
-- read and apply `DESIGN.md`
+- preserve card, image, icon, button, and decorative-layer counts
+- preserve visual hierarchy
+- read and apply `DESIGN.md` only as supporting design-system input
 - create CSS variables and global styles
 - unify header/navigation
 - convert `.html` links to Vue Router routes
@@ -390,7 +400,7 @@ Follow this sequence:
 4. If no public input exists, detect a raw `stitch*` export folder.
 5. If raw `stitch*` exists, normalize it into `public/`.
 6. Verify `public/DESIGN.md` and `public/*.html` exist.
-7. Generate the same-name Vue3 project.
+7. Generate the same-name Vue3 project in high-fidelity replica mode.
 8. Convert HTML pages to Vue views.
 9. Create router, layout, components, and styles.
 10. Normalize navigation.
@@ -434,6 +444,11 @@ On success, output:
 
 ### Generated Vue Project
 - Path: ...
+
+### Replica Mode
+- High-fidelity source replica
+- Navigation normalized only
+- Page body redesigned: no
 
 ### Vue Pages Created
 - public/<real-page-name>.html -> src/views/<ViewName>.vue -> /<route>

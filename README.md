@@ -21,7 +21,7 @@
 
 ## What it does
 
-`stitch-replica-skill` is a bundled Codex Skills workflow for turning Stitch download folders into a real Vue 3 project.
+`stitch-replica-skill` converts Stitch downloads into a Vue 3 project with high-fidelity HTML/CSS/asset preservation. Navigation is normalized for Vue Router, while page bodies are replicated from the source HTML as closely as possible.
 
 Most users only need `stitch-project-generator`. It detects raw `stitch*` exports or normalized `public/` files, prepares the input, and generates a same-name Vue 3 + Vite + pnpm project.
 
