@@ -1,0 +1,542 @@
+<!DOCTYPE html><html class="scroll-smooth dark" lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AeroGrow Systems | 大疆植保无人机旗舰服务</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-primary-container": "#506e00",
+                "tertiary-fixed-dim": "#b4cdb8",
+                "surface-container-highest": "#353534",
+                "on-secondary": "#003909",
+                "on-error": "#690005",
+                "error": "#ffb4ab",
+                "primary": "#ffffff",
+                "surface": "#131313",
+                "surface-container": "#201f1f",
+                "on-background": "#e5e2e1",
+                "inverse-on-surface": "#313030",
+                "tertiary-fixed": "#d0e9d3",
+                "background": "#131313",
+                "on-tertiary-fixed": "#0b2013",
+                "surface-container-lowest": "#0e0e0e",
+                "primary-container": "#c5ff41",
+                "inverse-primary": "#4b6700",
+                "on-tertiary-container": "#536a59",
+                "on-secondary-fixed-variant": "#005312",
+                "on-secondary-fixed": "#002204",
+                "on-surface-variant": "#c3c9af",
+                "surface-tint": "#c5ff41",
+                "on-primary-fixed-variant": "#384e00",
+                "surface-dim": "#131313",
+                "on-surface": "#e5e2e1",
+                "primary-fixed": "#c5ff41",
+                "secondary": "#88d982",
+                "outline-variant": "#434935",
+                "error-container": "#93000a",
+                "on-tertiary-fixed-variant": "#364c3c",
+                "surface-variant": "#353534",
+                "on-secondary-container": "#81d27c",
+                "inverse-surface": "#e5e2e1",
+                "secondary-fixed": "#a3f69c",
+                "tertiary": "#ffffff",
+                "surface-container-low": "#1c1b1b",
+                "secondary-container": "#005b14",
+                "surface-container-high": "#2a2a2a",
+                "secondary-fixed-dim": "#88d982",
+                "surface-bright": "#393939",
+                "on-error-container": "#ffdad6",
+                "on-tertiary": "#203526",
+                "on-primary": "#253500",
+                "tertiary-container": "#d0e9d3",
+                "on-primary-fixed": "#141f00",
+                "outline": "#8d937b",
+                "primary-fixed-dim": "#c5ff41"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "unit-md": "16px",
+                "unit-xl": "64px",
+                "gutter": "24px",
+                "unit-xs": "4px",
+                "unit-sm": "8px",
+                "margin-tablet": "32px",
+                "margin-mobile": "20px",
+                "unit-lg": "32px",
+                "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "label-md": ["Hanken Grotesk"],
+                "label-tech": ["JetBrains Mono"],
+                "body-md": ["Hanken Grotesk"],
+                "headline-md": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"],
+                "display-lg": ["Hanken Grotesk"],
+                "label-sm": ["Hanken Grotesk"],
+                "headline-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "label-tech": ["13px", {"lineHeight": "1.0", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Enhanced Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Dark Mesh Gradients */
+        .mesh-gradient-dark {
+            background-color: #131313;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(75, 100%, 63%, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(160, 100%, 20%, 0.08) 0px, transparent 50%);
+        }
+
+        /* Premium Glass Panel */
+        .glass-dark {
+            background: rgba(32, 31, 31, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Cyber Hover Effects */
+        .cyber-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .cyber-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(197, 255, 65, 0.3);
+            box-shadow: 0 20px 40px -15px rgba(197, 255, 65, 0.15);
+        }
+
+        /* Shimmer Effect for Accent Buttons */
+        @keyframes shimmer {
+            0% { transform: translateX(-150%) skewX(-20deg); }
+            100% { transform: translateX(150%) skewX(-20deg); }
+        }
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            animation: shimmer 4s infinite;
+        }
+
+        /* Hero Ambient Motion */
+        @keyframes ambient-float {
+            0% { transform: scale(1.05) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-1%, -1%); }
+        }
+        .hero-bg-anim {
+            animation: ambient-float 20s ease-in-out infinite alternate;
+        }
+
+        /* Typography spacing fix */
+        h1, h2, h3 {
+            letter-spacing: -0.01em;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar Shared Component -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-white/10 h-20 transition-all duration-300 shadow-[0_0_15px_rgba(188,245,55,0.2)]">
+<nav class="flex justify-between items-center px-margin-desktop h-full w-full max-w-screen-2xl mx-auto"><div class="flex items-center gap-2 group cursor-pointer">
+  <span class="font-display-lg text-display-lg font-black text-primary-fixed tracking-tighter uppercase">极客黑金农机</span>
+</div>
+<div class="hidden md:flex gap-10 items-center font-body-md text-body-md"><a class="font-body-md text-body-md text-primary-fixed font-bold border-b-2 border-primary-fixed pb-1" href="#">首页</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">产品中心</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">解决方案</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">项目案例</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">服务体系</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">关于我们</a><button class="ml-4 bg-primary-fixed text-on-primary-fixed px-8 py-2.5 rounded-full font-bold active:scale-95 transition-transform hover:shadow-[0_0_15px_rgba(188,245,55,0.2)]">立即咨询</button></div>
+<div class="md:hidden">
+  <span class="material-symbols-outlined text-primary-fixed cursor-pointer">menu</span>
+</div></nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="DJI T-Series Hero" class="w-full h-full object-cover hero-bg-anim" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7GcTGNoz_uzfgp0qh9r9NJ0RFz8QlylUSZpB7BCLhCSYoKXH03Kic_eVhPxJBSjTpKKuHFD9DofbE380D5Y1W6t6s4ZkkjQIXDZBNPbCdD6reDqKG3thBLDf6F9q4_65Y9VcSl-c7tvgjzFEkTTAK1IUbCyuU5bAbBOFR1spLM2cIf-Rb2hWlohY54rwABXX5GxbWt1bvfkMLSVbHG51blqXZTX-jMTuvXP7cM5Y8v-UF4oQQfdIhq7cADencEm6p6VvqwOvbzUxo">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/20 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-screen-2xl mx-auto px-margin-desktop w-full reveal active">
+<div class="max-w-4xl">
+<div class="flex items-center gap-3 mb-8">
+<div class="h-[1px] w-12 bg-primary-fixed"></div>
+<span class="font-label-tech text-label-tech text-primary-fixed uppercase">Industrial Precision Agriculture</span>
+</div>
+<h1 class="font-display-lg text-[clamp(48px,8vw,80px)] leading-[0.95] mb-8 text-primary drop-shadow-2xl">大疆植保无人机：<br><span class="text-primary-fixed">智慧农业</span>新纪元</h1>
+<p class="font-body-lg text-body-lg mb-12 text-on-surface-variant max-w-2xl leading-relaxed">
+                    以航空科技重塑传统耕作。AeroGrow Systems 提供基于 DJI 顶尖硬件的高效喷洒、精准勘测及数据闭环方案，让农业作业更简单、更丰产。
+                </p>
+<div class="flex flex-wrap gap-6">
+<button class="bg-primary-fixed text-on-primary-fixed px-12 py-5 rounded-full font-extrabold text-lg btn-shimmer transition-all duration-300 hover:shadow-[0_0_40px_rgba(197,255,65,0.4)] active:scale-95">立即预约服务</button>
+<button class="bg-white/5 backdrop-blur-md border border-white/10 text-white px-12 py-5 rounded-full font-extrabold text-lg hover:bg-white/10 transition-all duration-300 active:scale-95">探索产品详情</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Key Benefits -->
+<section class="py-unit-xl bg-background mesh-gradient-dark relative">
+<div class="max-w-screen-2xl mx-auto px-margin-desktop">
+<div class="text-center mb-24 reveal active">
+<span class="text-primary-fixed font-label-tech text-label-tech uppercase mb-4 block">Core Advantages</span>
+<h2 class="font-display-lg text-display-lg text-primary mb-6">为什么选择大疆植保？</h2>
+<div class="w-24 h-1 bg-primary-fixed mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-unit-lg glass-dark rounded-[2rem] cyber-card reveal active" style="transition-delay: 50ms;">
+<div class="w-16 h-16 bg-primary-fixed/10 rounded-2xl flex items-center justify-center mb-8 border border-primary-fixed/20">
+<span class="material-symbols-outlined text-primary-fixed text-3xl">speed</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">高效作业</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">每小时喷洒面积突破 320 亩，单日作业效率达传统人工百倍，彻底告别农忙焦虑。</p>
+</div>
+<div class="p-unit-lg glass-dark rounded-[2rem] cyber-card reveal active" style="transition-delay: 150ms;">
+<div class="w-16 h-16 bg-primary-fixed/10 rounded-2xl flex items-center justify-center mb-8 border border-primary-fixed/20">
+<span class="material-symbols-outlined text-primary-fixed text-3xl">gps_fixed</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">精准对靶</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">全向雷达配合 RTK 厘米级定位，实现“处方图”式喷洒，药剂直达根部，拒绝浪费。</p>
+</div>
+<div class="p-unit-lg glass-dark rounded-[2rem] cyber-card reveal active" style="transition-delay: 250ms;">
+<div class="w-16 h-16 bg-primary-fixed/10 rounded-2xl flex items-center justify-center mb-8 border border-primary-fixed/20">
+<span class="material-symbols-outlined text-primary-fixed text-3xl">savings</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">省药省肥</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">离心雾化技术确保覆盖均匀，平均节约农药 30%，节水 90%，显著提升种植利润。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Showcase (T50) -->
+<section class="py-unit-xl bg-surface-container-lowest relative overflow-hidden">
+<div class="absolute left-0 top-0 w-full h-full opacity-5 pointer-events-none">
+<svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<pattern height="100" id="grid-p" patternUnits="userSpaceOnUse" width="100">
+<path d="M 100 0 L 0 0 0 100" fill="none" stroke="white" stroke-width="0.5"></path>
+</pattern>
+<rect fill="url(#grid-p)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<div class="max-w-screen-2xl mx-auto px-margin-desktop relative z-10">
+<div class="flex flex-col lg:flex-row items-center gap-20">
+<div class="w-full lg:w-1/2 reveal active">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary-fixed to-secondary-fixed opacity-20 blur-2xl group-hover:opacity-40 transition-opacity"></div>
+<img alt="DJI T50 Tech" class="relative z-10 rounded-3xl w-full border border-white/5 shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiypIbjQUjK7K-6V29SWl4h4_pscm-qWGr_Z8dGPHqZfooYseRrRypd1THfeAPU8LlWDTQ0p-o6R-CTif7_j4FQRSbFRQlCpI3iDrjJngf43PxsW-D8AIbUyQV_hvsXGk2hQuADd2WvSP1KqqViJasWtg3QI63YM_0UOZUM56bIPiprdCbvM9-hV-2-vHSVKY3b3YoBv4QrSWXX90SZIj59DShNo1G1pM23iEt5Sy0_3ssLtgKUpLu75AiLshb1wmcGYa1rLFaD-Kv">
+<div class="absolute bottom-6 left-6 bg-primary-fixed text-on-primary-fixed px-4 py-2 rounded font-bold text-sm tracking-widest z-20">FLAGSHIP T50</div>
+</div>
+</div>
+<div class="w-full lg:w-1/2 reveal active" style="transition-delay: 200ms;">
+<span class="font-label-tech text-label-tech text-primary-fixed bg-primary-fixed/10 border border-primary-fixed/30 px-6 py-2 rounded-full uppercase mb-8 inline-block">Flagship Technology</span>
+<h2 class="font-display-lg text-[40px] md:text-headline-lg text-primary mb-8 leading-tight">更强悍、更智能、更全面</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 leading-relaxed">
+                        作为新一代旗舰植保机，T50 搭载双重雾化喷洒系统、全向避障雷达与厘米级绘图航测，专为超大规模、复杂地形的现代农场而生。
+                    </p>
+<div class="grid grid-cols-2 gap-x-12 gap-y-10 mb-14">
+<div class="border-l-2 border-primary-fixed pl-6 group">
+<p class="font-label-tech text-label-tech text-on-surface-variant uppercase mb-2">载重容量</p>
+<p class="font-headline-lg text-headline-lg text-primary font-bold group-hover:text-primary-fixed transition-colors">50 升 (L)</p>
+</div>
+<div class="border-l-2 border-primary-fixed pl-6 group">
+<p class="font-label-tech text-label-tech text-on-surface-variant uppercase mb-2">作业幅宽</p>
+<p class="font-headline-lg text-headline-lg text-primary font-bold group-hover:text-primary-fixed transition-colors">11 米 (m)</p>
+</div>
+<div class="border-l-2 border-primary-fixed pl-6 group">
+<p class="font-label-tech text-label-tech text-on-surface-variant uppercase mb-2">最大效率</p>
+<p class="font-headline-lg text-headline-lg text-primary font-bold group-hover:text-primary-fixed transition-colors">320 亩/h</p>
+</div>
+<div class="border-l-2 border-primary-fixed pl-6 group">
+<p class="font-label-tech text-label-tech text-on-surface-variant uppercase mb-2">雷达系统</p>
+<p class="font-headline-lg text-headline-lg text-primary font-bold group-hover:text-primary-fixed transition-colors">全向避障</p>
+</div>
+</div>
+<button class="flex items-center gap-4 bg-transparent border-2 border-primary-fixed text-primary-fixed px-10 py-4 rounded-full font-bold hover:bg-primary-fixed hover:text-on-primary-fixed transition-all duration-300">
+<span class="">获取技术规格手册</span>
+<span class="material-symbols-outlined">arrow_outward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Project Experience -->
+<section class="py-unit-xl bg-background mesh-gradient-dark">
+<div class="max-w-screen-2xl mx-auto px-margin-desktop">
+<div class="flex justify-between items-end mb-16 reveal active">
+<div>
+<span class="text-primary-fixed font-label-tech text-label-tech uppercase mb-4 block">Success Stories</span>
+<h2 class="font-display-lg text-headline-lg text-primary">实战项目案例</h2>
+</div>
+<button class="text-primary-fixed font-bold flex items-center gap-2 hover:opacity-70 transition-all">
+                    查看全部 <span class="material-symbols-outlined text-sm">east</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Project Card 1 -->
+<div class="group relative rounded-[2.5rem] overflow-hidden aspect-[3/4] reveal cyber-card active" style="transition-delay: 50ms;">
+<img alt="Project 1" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD29gt0cJx4GyGX6i7C8MuXj3DqEa9924Mw20otjX52K3JvwLjqkwoi2ojIbdOv3GY9gHTB0kvyv7TccdKv4bgJ5FYwY0WlVxCibxeaXQIjrsHVp8stlfp4dYk33nYEIoxr6SKNyZnrgDFzlz2fFysvprzzsrHm85DO_0s-VBc1PRHvMudhedpClslZiMlMgejPHmEUz3K7eHUeyF8AukUYj-SYkQf8g1m4XVRksOuYmzmtRMPFyvMZeGB-YOezZWjAccP_HY6RQro">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10 w-full">
+<span class="text-[10px] font-extrabold bg-primary-fixed/90 text-on-primary-fixed px-3 py-1 rounded-full mb-4 inline-block tracking-tighter uppercase">Large Farm</span>
+<h4 class="font-headline-lg text-primary mb-4">黑龙江5000亩水稻植保</h4>
+<p class="text-on-surface-variant text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2">
+                            利用多机协同作业，在极短农时内完成统防统治，提升产值近 15%。
+                        </p>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="group relative rounded-[2.5rem] overflow-hidden aspect-[3/4] reveal cyber-card active" style="transition-delay: 150ms;">
+<img alt="Project 2" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3pCI9xXXbYkzzIR-wTTCYGlu_v24WIBeyjPnRKMoO6iR5ka9XdTg5q3CIhSqWnOVqEIqrR0p7rJzR80sbsp-R2yQXG8cCc5U86mP9Ioh1Iky8YmiMrAdihIctXVyU43QBzWvpWb0CPpVABoDyqGQb63nEHpCwRjFNDOTLOhXvxjvmbTSPFptyOnxz9jsmzehbiALwJW4mueq3eyzbPt4Beyvfj848zE1NOgQz1F3yP8k9PHNPmPrPRDsghBXfu1g7eQ86kVzJ-Un_">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10 w-full">
+<span class="text-[10px] font-extrabold bg-primary-fixed/90 text-on-primary-fixed px-3 py-1 rounded-full mb-4 inline-block tracking-tighter uppercase">Orchard</span>
+<h4 class="font-headline-lg text-primary mb-4">广西山地柑橘林飞防</h4>
+<p class="text-on-surface-variant text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2">
+                            攻克丘陵地形，自动避障技术确保在复杂林间实现高均匀度喷洒。
+                        </p>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="group relative rounded-[2.5rem] overflow-hidden aspect-[3/4] reveal cyber-card active" style="transition-delay: 250ms;">
+<img alt="Project 3" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX-hcIbtBnQAckaKS4qZeeYn3HwOKaP36w4QaqcIaiQqQ5NKNLgqiXTGjgu3BrKkpiuqPUR5uE8qi2ujbsgJC-gyhmtCvXdFWRywUsWoob0Wbl88OLYlqZZFGgbpX5op_fVn79-w03krdpWgH3Mt8u25D-yJswXCT5KStNKH9qP7iBXSw1qPVKKuw-Cr4A2ygOjE_rmh72tTlSaGy8yvB_xXQj5PwWmIdY1qu9SlQrUb3x2XhtQHu6VwOqiBpXf4AJzLg-PAKrUQP">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10 w-full">
+<span class="text-[10px] font-extrabold bg-primary-fixed/90 text-on-primary-fixed px-3 py-1 rounded-full mb-4 inline-block tracking-tighter uppercase">Arid Region</span>
+<h4 class="font-headline-lg text-primary mb-4">新疆万亩棉花脱叶剂</h4>
+<p class="text-on-surface-variant text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2">
+                            超大作业量挑战，24小时连轴转保障机械采收前的脱叶效果达 95%。
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Service Process -->
+<section class="py-unit-xl bg-surface-container-low border-y border-white/5">
+<div class="max-w-screen-2xl mx-auto px-margin-desktop text-center">
+<h2 class="font-display-lg text-headline-lg text-primary mb-24 reveal active">专业服务体系</h2>
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 relative">
+<!-- Connector Line -->
+<div class="hidden md:block absolute top-16 left-[10%] right-[10%] h-[1px] bg-white/10 z-0"></div>
+<div class="relative z-10 flex-1 flex flex-col items-center reveal active" style="transition-delay: 50ms;">
+<div class="w-32 h-32 glass-dark rounded-3xl flex items-center justify-center mb-8 border border-white/10 cyber-card">
+<span class="material-symbols-outlined text-primary-fixed text-4xl">chat</span>
+</div>
+<h4 class="font-headline-md text-primary mb-4">在线咨询</h4>
+<p class="font-body-md text-on-surface-variant px-6">深度调研作物类型与植保痛点，定制专属方案。</p>
+</div>
+<div class="relative z-10 flex-1 flex flex-col items-center reveal active" style="transition-delay: 150ms;">
+<div class="w-32 h-32 glass-dark rounded-3xl flex items-center justify-center mb-8 border border-white/10 cyber-card">
+<span class="material-symbols-outlined text-primary-fixed text-4xl">map</span>
+</div>
+<h4 class="font-headline-md text-primary mb-4">实地勘测</h4>
+<p class="font-body-md text-on-surface-variant px-6">激光雷达绘图，建立农田三维模型，规避障碍。</p>
+</div>
+<div class="relative z-10 flex-1 flex flex-col items-center reveal active" style="transition-delay: 250ms;">
+<div class="w-32 h-32 glass-dark rounded-3xl flex items-center justify-center mb-8 border border-white/10 cyber-card">
+<span class="material-symbols-outlined text-primary-fixed text-4xl">agriculture</span>
+</div>
+<h4 class="font-headline-md text-primary mb-4">专业喷洒</h4>
+<p class="font-body-md text-on-surface-variant px-6">全自动智能群组飞行，确保每一寸土地精准覆盖。</p>
+</div>
+<div class="relative z-10 flex-1 flex flex-col items-center reveal active" style="transition-delay: 350ms;">
+<div class="w-32 h-32 glass-dark rounded-3xl flex items-center justify-center mb-8 border border-white/10 cyber-card">
+<span class="material-symbols-outlined text-primary-fixed text-4xl">assessment</span>
+</div>
+<h4 class="font-headline-md text-primary mb-4">效果评估</h4>
+<p class="font-body-md text-on-surface-variant px-6">数据分析报告实时推送，作业质量全程可追溯。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-unit-xl bg-background overflow-hidden">
+<div class="max-w-screen-2xl mx-auto px-margin-desktop">
+<h2 class="font-display-lg text-headline-lg text-center text-primary mb-24 reveal active">种植户的真实声音</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div class="glass-dark p-10 rounded-[3rem] flex flex-col md:flex-row gap-10 reveal cyber-card active">
+<div class="w-full md:w-48 h-48 flex-shrink-0 overflow-hidden rounded-[2rem] border border-white/10">
+<img alt="User 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHlEoDltS-FeslgUtrAHnMV2CIGfhJdoLJxDXZCBVz4zTanX9EAoPzg3pG1rbBt0Q81Sw-PXSFsSYatVxSs5OVPGj7yg95dN04lK4wLvRRRsZOXONhmOD1vRjTmI0u8y1WSql-m90hD2T4Di4y5nkve3-s_dUWEh5FRWQMvH0bv__t_oDQnz7-eY_Mh2GYN6Fu0FoJKkKUBkWipCuoOUW4Mu2dD1S1zD8yUz61H8gXTc8t74Sd7cY18WuhFt3BPr3lmjzMMb8cEb_m">
+</div>
+<div>
+<div class="flex text-primary-fixed mb-6">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface-variant mb-8 leading-relaxed">“以前五百亩地人手要忙一礼拜，还要担心中毒。大疆无人机一天就搞定，省下的工时费又多承包了百来亩。”</p>
+<div class="flex flex-col">
+<span class="font-bold text-primary">王志强</span>
+<span class="text-xs text-primary-fixed font-bold tracking-widest uppercase">江苏种粮大户</span>
+</div>
+</div>
+</div>
+<div class="glass-dark p-10 rounded-[3rem] flex flex-col md:flex-row gap-10 reveal cyber-card active" style="transition-delay: 200ms;">
+<div class="w-full md:w-48 h-48 flex-shrink-0 overflow-hidden rounded-[2rem] border border-white/10">
+<img alt="User 2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKpheOADojHkk8jYugKnaacMmku78s2-ggnDg-Ts1oLcaSXtsduJHPbxeqxQiQAB0eh8FTLDRTeuj1YlBbEa8o4p9_0fxhPMSWhd4Aqff6VSzMEyzLzNmulyPx9Z6WyQzeawuWQ2_1zed9iGtabg-jRZ_BrLRsV9YPSFZuotX9b-LRD1ziwzupNCr1dG4CLspxw_Lw8keyewILAog38nVcvdS4p__gDmwcTuRH8_4K-md_40ryr3Wm9zSu4LxLGRSurSWqWQ10kKZN">
+</div>
+<div>
+<div class="flex text-primary-fixed mb-6">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md italic text-on-surface-variant mb-8 leading-relaxed">“RTK 精准度太震撼了。我们在复杂山区作业，药量控得刚好，服务队的作业质量得到了全村一致点赞。”</p>
+<div class="flex flex-col">
+<span class="font-bold text-primary">李明</span>
+<span class="text-xs text-primary-fixed font-bold tracking-widest uppercase">飞防队长</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-unit-xl bg-primary-fixed relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent animate-pulse"></div>
+<div class="relative z-10 max-w-screen-2xl mx-auto px-margin-desktop text-center reveal active">
+<h2 class="font-display-lg text-[clamp(32px,5vw,64px)] text-on-primary-fixed mb-8">准备好迎接智慧大丰收了吗？</h2>
+<p class="font-body-lg text-on-primary-fixed/80 mb-16 max-w-3xl mx-auto font-medium">
+                联系我们的资深植保工程师，为您量身打造包含航测、植保与数据的全栈式智慧农业作业链路。
+            </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-12">
+<div class="flex items-center gap-6 group">
+<div class="w-16 h-16 rounded-full bg-on-primary-fixed/10 flex items-center justify-center text-on-primary-fixed border border-on-primary-fixed/20 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-2xl">call</span>
+</div>
+<div class="text-left">
+<p class="text-xs opacity-60 font-bold uppercase tracking-widest text-on-primary-fixed">咨询热线</p>
+<span class="font-headline-lg text-on-primary-fixed">400-888-9999</span>
+</div>
+</div>
+<button class="bg-on-primary-fixed text-primary-fixed px-16 py-6 rounded-full font-extrabold text-xl shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 btn-shimmer">
+                    在线立即预约
+                </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shared Component -->
+<footer class="w-full py-unit-xl bg-surface-container-lowest border-t border-white/5"><div class="max-w-screen-2xl mx-auto px-margin-desktop">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-20">
+    <div class="col-span-1 md:col-span-1">
+      <span class="font-headline-lg text-headline-lg text-primary-fixed mb-6 block uppercase tracking-tighter font-extrabold">极客黑金农机</span>
+      <p class="font-label-md text-label-md text-on-surface-variant leading-relaxed">
+        AeroGrow Systems 致力于通过领先的无人机技术赋能农业生产者。
+      </p>
+    </div>
+    <div class="font-label-md text-label-md">
+      <h4 class="text-primary-fixed uppercase mb-6">快速链接</h4>
+      <ul class="space-y-4">
+        <li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">联系方式</a></li>
+        <li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">隐私政策</a></li>
+        <li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">服务条款</a></li>
+      </ul>
+    </div>
+    <div class="font-label-md text-label-md">
+      <h4 class="text-primary-fixed uppercase mb-6">社交媒体</h4>
+      <ul class="space-y-4">
+        <li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">官方微博</a></li>
+        <li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors" href="#">技术支持</a></li>
+      </ul>
+    </div>
+    <div class="font-label-md text-label-md">
+      <h4 class="text-primary-fixed uppercase mb-6">关注我们</h4>
+      <div class="flex gap-4">
+        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary-fixed hover:text-on-primary-fixed transition-all cursor-pointer opacity-80 hover:opacity-100">
+          <span class="material-symbols-outlined text-sm">public</span>
+        </div>
+        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary-fixed hover:text-on-primary-fixed transition-all cursor-pointer opacity-80 hover:opacity-100">
+          <span class="material-symbols-outlined text-sm">mail</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col md:flex-row justify-between items-center pt-unit-md border-t border-white/5 gap-unit-md">
+    <p class="font-label-md text-label-md text-on-surface-variant">© 2024 极客黑金农业科技. 版权所有.</p>
+  </div>
+</div></footer>
+<script>
+    // Smooth Reveal on Scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Header scroll animation
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('bg-surface/90', 'h-16', 'shadow-2xl');
+            header.classList.remove('h-20');
+        } else {
+            header.classList.remove('bg-surface/90', 'h-16', 'shadow-2xl');
+            header.classList.add('h-20');
+        }
+    }, { passive: true });
+
+    // Subtle parallax for Hero
+    window.addEventListener('scroll', () => {
+        const heroBg = document.querySelector('.hero-bg-anim');
+        if (heroBg) {
+            const scroll = window.scrollY;
+            heroBg.style.transform = `translateY(${scroll * 0.2}px)`;
+        }
+    }, { passive: true });
+</script>
+
+
+
+
+</body></html>

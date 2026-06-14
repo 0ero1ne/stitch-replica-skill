@@ -1,0 +1,383 @@
+<!DOCTYPE html><html class="dark" lang="zh-CN" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>极客黑金农机 - 服务体系</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            background-color: #121212;
+            color: #e5e2e1;
+            font-family: 'Hanken Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(10, 31, 18, 0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        .bloom-shadow {
+            box-shadow: 0 0 15px rgba(188, 245, 55, 0.4);
+        }
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: 9999;
+        }
+        .pulse-emerald {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .5; transform: scale(1.2); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#c3c9af",
+                      "on-primary-fixed": "#141f00",
+                      "surface-container-high": "#2a2a2a",
+                      "on-secondary-container": "#81d27c",
+                      "on-background": "#e5e2e1",
+                      "surface-container-lowest": "#0e0e0e",
+                      "surface-container": "#201f1f",
+                      "outline": "#8d937b",
+                      "tertiary-container": "#d0e9d3",
+                      "error": "#ffb4ab",
+                      "surface": "#131313",
+                      "secondary-fixed": "#a3f69c",
+                      "secondary-container": "#005b14",
+                      "on-tertiary-fixed": "#0b2013",
+                      "secondary": "#88d982",
+                      "surface-dim": "#131313",
+                      "primary-container": "#bcf537",
+                      "on-surface": "#e5e2e1",
+                      "on-primary-fixed-variant": "#384e00",
+                      "tertiary-fixed-dim": "#b4cdb8",
+                      "on-tertiary-container": "#536a59",
+                      "surface-variant": "#353534",
+                      "surface-container-low": "#1c1b1b",
+                      "inverse-surface": "#e5e2e1",
+                      "outline-variant": "#434935",
+                      "on-secondary-fixed": "#002204",
+                      "on-error": "#690005",
+                      "tertiary": "#ffffff",
+                      "surface-container-highest": "#353534",
+                      "primary-fixed": "#bcf537",
+                      "on-tertiary": "#203526",
+                      "on-primary-container": "#506e00",
+                      "error-container": "#93000a",
+                      "inverse-primary": "#4b6700",
+                      "on-secondary": "#003909",
+                      "surface-bright": "#393939",
+                      "surface-tint": "#a1d80e",
+                      "secondary-fixed-dim": "#88d982",
+                      "primary-fixed-dim": "#a1d80e",
+                      "on-secondary-fixed-variant": "#005312",
+                      "on-tertiary-fixed-variant": "#364c3c",
+                      "on-primary": "#253500",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed": "#d0e9d3",
+                      "inverse-on-surface": "#313030",
+                      "background": "#131313",
+                      "primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "unit-xs": "4px",
+                      "unit-xl": "64px",
+                      "unit-md": "16px",
+                      "margin-mobile": "20px",
+                      "unit-lg": "32px",
+                      "margin-tablet": "32px",
+                      "unit-sm": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Hanken Grotesk"],
+                      "label-md": ["Hanken Grotesk"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "headline-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "headline-lg-mobile": ["Hanken Grotesk"],
+                      "body-md": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="noise-overlay"></div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(188,245,55,0.2)]">
+<div class="flex justify-between items-center px-margin-desktop py-unit-md max-w-screen-2xl mx-auto">
+<div class="font-display-lg text-display-lg font-black text-primary-fixed tracking-tighter">
+                极客黑金农机
+            </div>
+<div class="hidden md:flex gap-unit-lg items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">首页</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">产品中心</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">解决方案</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">项目案例</a>
+<a class="font-body-md text-body-md text-primary-fixed font-bold border-b-2 border-primary-fixed pb-1" href="#">服务体系</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">关于我们</a>
+</div>
+<div class="flex items-center gap-unit-md">
+
+<button class="bg-primary-fixed text-on-primary-fixed px-unit-md py-unit-sm font-label-md text-label-md rounded-full active:scale-95 transition-transform bloom-shadow">
+                    立即咨询
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden px-margin-desktop">
+
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background"></div>
+<div class="relative z-10 max-w-4xl text-center space-y-unit-lg">
+<div class="inline-flex items-center gap-unit-sm px-unit-md py-unit-xs glass-card rounded-full border border-primary-fixed/20 transition-all duration-700 opacity-100 translate-y-0">
+<span class="w-2 h-2 rounded-full bg-primary-fixed pulse-emerald"></span>
+<span class="font-label-md text-label-md text-primary-fixed tracking-widest">ALL-ROUND PROTECTION</span>
+</div>
+<h1 class="font-display-lg text-[64px] md:text-[84px] leading-none text-white tracking-tight">
+<span class="text-primary-fixed">全方位</span> 守护体系
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    不仅仅是领先的无人机，更是覆盖全生命周期的农业智治方案。极客黑金以“科技惠农”为核心，构建从售前到售后的闭环服务网。
+                </p>
+<div class="flex flex-wrap justify-center gap-unit-md pt-unit-md">
+<button class="bg-primary-fixed text-on-primary-fixed px-unit-xl py-unit-md font-headline-md text-headline-md rounded-full bloom-shadow hover:scale-105 transition-all">
+                        查看详情
+                    </button>
+<button class="border border-primary-fixed text-primary-fixed px-unit-xl py-unit-md font-headline-md text-headline-md rounded-full backdrop-blur-sm hover:bg-primary-fixed/10 transition-all">
+                        服务网点
+                    </button>
+</div>
+</div>
+</section>
+<!-- Service Flow (The 4 Stages) -->
+<section class="py-unit-xl px-margin-desktop bg-surface-container-lowest">
+<div class="max-w-screen-2xl mx-auto space-y-unit-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-unit-md">
+<div class="space-y-unit-xs">
+<h2 class="font-headline-lg text-headline-lg text-white">智慧服务全流程</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">标准化服务链条，确保每一寸土地得到精准呵护</p>
+</div>
+<div class="h-px bg-outline-variant flex-grow md:mx-unit-lg mb-4 hidden md:block"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Stage 1 -->
+<div class="glass-card p-unit-lg space-y-unit-md group hover:border-primary-fixed/50 transition-all duration-500 duration-700 opacity-100 translate-y-0">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-fixed/10 rounded-lg group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary-fixed group-hover:text-on-primary-fixed">support_agent</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white">专业咨询</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">根据作物类型、地块规模及病虫害情况，定制专属植保方案。专家团队24小时在线答疑。</p>
+<div class="pt-unit-md opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="text-primary-fixed text-[64px] font-black italic">01</span>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="glass-card p-unit-lg space-y-unit-md group hover:border-primary-fixed/50 transition-all duration-500 duration-700 opacity-100 translate-y-0">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-fixed/10 rounded-lg group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary-fixed group-hover:text-on-primary-fixed">map</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white">精准测绘</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">利用多光谱无人机进行航测，快速生成三维高精度处方图，实现作业路径自动化规划。</p>
+<div class="pt-unit-md opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="text-primary-fixed text-[64px] font-black italic">02</span>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="glass-card p-unit-lg space-y-unit-md group hover:border-primary-fixed/50 transition-all duration-500 duration-700 opacity-100 translate-y-0">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-fixed/10 rounded-lg group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary-fixed group-hover:text-on-primary-fixed">agriculture</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white">智能喷洒</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">高性能喷洒系统配合厘米级定位，实现精准变量施肥喷药，减少农药浪费，提升吸收效率。</p>
+<div class="pt-unit-md opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="text-primary-fixed text-[64px] font-black italic">03</span>
+</div>
+</div>
+<!-- Stage 4 -->
+<div class="glass-card p-unit-lg space-y-unit-md group hover:border-primary-fixed/50 transition-all duration-500 duration-700 opacity-100 translate-y-0">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-fixed/10 rounded-lg group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-primary-fixed group-hover:text-on-primary-fixed">monitoring</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white">智能监测</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">作业数据实时上传云端。通过长效监测反馈，动态调整后续种植策略，实现增产增收。</p>
+<div class="pt-unit-md opacity-20 group-hover:opacity-100 transition-opacity">
+<span class="text-primary-fixed text-[64px] font-black italic">04</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Global Support Network -->
+<section class="py-unit-xl relative overflow-hidden">
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none">
+
+</div>
+<div class="max-w-screen-2xl mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-unit-xl items-center">
+<div class="space-y-unit-lg">
+<h2 class="font-display-lg text-display-lg text-white">全球支持网络</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">我们在全球设立了超过500个核心服务站点，覆盖农业主要产区，确保您的农机在关键农时永不掉线。</p>
+<div class="space-y-unit-md">
+<div class="flex gap-unit-md p-unit-md glass-card rounded-xl transition-all duration-700 opacity-100 translate-y-0">
+<div class="text-primary-fixed"><span class="material-symbols-outlined text-[32px]">schedule</span></div>
+<div>
+<h4 class="font-headline-md text-headline-md text-white">24/7 技术支持</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">远程专家诊断，极速响应，通过云端实时解决软件与定位问题。</p>
+</div>
+</div>
+<div class="flex gap-unit-md p-unit-md glass-card rounded-xl transition-all duration-700 opacity-100 translate-y-0">
+<div class="text-primary-fixed"><span class="material-symbols-outlined text-[32px]">inventory_2</span></div>
+<div>
+<h4 class="font-headline-md text-headline-md text-white">零配件供应</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">关键部件全城12小时达。我们承诺易损件长期备货，保障作业连续性。</p>
+</div>
+</div>
+<div class="flex gap-unit-md p-unit-md glass-card rounded-xl transition-all duration-700 opacity-100 translate-y-0">
+<div class="text-primary-fixed"><span class="material-symbols-outlined text-[32px]">school</span></div>
+<div>
+<h4 class="font-headline-md text-headline-md text-white">飞手专业培训</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">官方认证培训体系，从理论到实操，助力农民转型为数字化农业技术员。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary-fixed/10 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+<img alt="Support Network" class="rounded-2xl glass-card border border-white/5 object-cover h-[500px] w-full transition-all duration-700 opacity-100 translate-y-0" data-alt="A cinematic top-down view of a modern agricultural drone hangar during the golden hour, featuring rows of precision drones being maintained by technicians in high-tech uniforms. The lighting is dramatic, with warm orange sunlight cutting through the cool blue and emerald ambient lighting of the facility. The atmosphere is professional, clean, and futuristic, emphasizing the global support and maintenance aspect of the DJI Agriculture brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm5CU1yapFGRe7lc4NxVpS8N6ok-MgyytBy2vL80Uc6bRMUi7eGvzzBue7U7qj-Iqm7dvrTkflHB5oyT4OJzd0Fn5ChzB5EGhw2NdCzy4FNBfLOkgcMBAI232gdNqB9pRIGhch_29boWqRBgAv1H3N1A-1LQ9zQUj4BjHKMYaM5OLd6yJlIltwqC71Xqr4Rho6bcMk26SBCDDVoM61Dtu3mxeNsu0d-T_wljWPPoaLJa82NnDtw2lthW2MMBOOJ7sO8jmAnwcU5ANy">
+<div class="absolute bottom-unit-lg right-unit-lg glass-card p-unit-md rounded-xl transition-all duration-700 opacity-100 translate-y-0">
+<div class="flex flex-col">
+<span class="text-primary-fixed font-display-lg text-[40px]">98%</span>
+<span class="text-on-surface-variant text-label-md">故障首次修复率</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recruitment CTA -->
+<section class="py-unit-xl px-margin-desktop">
+<div class="max-w-screen-2xl mx-auto">
+<div class="relative rounded-3xl overflow-hidden bg-surface-container-highest border border-white/5 p-unit-xl flex flex-col md:flex-row items-center justify-between gap-unit-xl">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-fixed via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 space-y-unit-md max-w-xl text-center md:text-left">
+<h2 class="font-headline-lg text-[42px] leading-tight text-white">加入我们，<br>共同守护未来农业</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">极客黑金正在招募全球服务商与技术合伙人。加入我们，共享农业数字化转型的巨大红利，让每一片土地都散发科技的光芒。</p>
+</div>
+<div class="relative z-10">
+<button class="bg-primary-fixed text-on-primary-fixed px-12 py-6 font-headline-md text-headline-md rounded-full bloom-shadow hover:scale-110 active:scale-95 transition-all duration-300">
+                            加入服务团队
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-unit-xl bg-surface-container-lowest border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-screen-2xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-lg text-headline-lg text-primary-fixed mb-unit-md">极客黑金农机</div>
+<p class="text-on-surface-variant font-label-md text-label-md opacity-80 leading-relaxed">致力于将最先进的航空技术与农业科学深度融合，重塑全球耕作体验。</p>
+</div>
+<div>
+<h5 class="text-white font-label-md text-label-md mb-unit-md">产品中心</h5>
+<ul class="space-y-unit-sm">
+<li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-md text-label-md" href="#">T50 植保无人飞机</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-md text-label-md" href="#">T25P 植保无人飞机</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-md text-label-md" href="#">Mavic 3M 多光谱版</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-label-md text-label-md mb-unit-md">快捷链接</h5>
+<ul class="space-y-unit-sm">
+<li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-md text-label-md" href="#">联系方式</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-md text-label-md" href="#">隐私政策</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-md text-label-md" href="#">服务条款</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-label-md text-label-md mb-unit-md">关注我们</h5>
+<div class="flex gap-unit-md mb-unit-md">
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:border-primary-fixed hover:text-primary-fixed transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:border-primary-fixed hover:text-primary-fixed transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm opacity-60">
+                    © 2024 极客黑金农业科技. 版权所有.
+                </div>
+</div>
+</div>
+</footer>
+<!-- FAB for quick interaction -->
+<button class="fixed bottom-unit-lg right-unit-lg w-16 h-16 rounded-full bg-primary-fixed text-on-primary-fixed shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-all bloom-shadow">
+<span class="material-symbols-outlined text-[32px]">chat</span>
+</button>
+<script>
+        // Micro-interactions and subtle scroll effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.glass-card');
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+                observer.observe(card);
+            });
+        });
+    </script>
+
+
+</body></html>
