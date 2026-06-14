@@ -121,37 +121,67 @@ Do not update, patch, overwrite, merge into, or continue converting an existing 
 - Do not assume pages are named `首页`, `产品中心`, `解决方案`, `项目案例`, `服务体系`, or `关于我们`.
 - Do not assume pages are named `Home`, `Products`, `Solutions`, `Cases`, `Services`, or `About`.
 - Do not assume there are exactly 6 pages.
-- Use high-fidelity / 1:1 source replica mode by default.
-- Navigation may be normalized. Everything else must be replicated from the source HTML as literally as possible.
+- Use high-fidelity, maintainable Vue conversion mode by default.
+- Preserve the source visual result, but implement it as clean, maintainable Vue code.
+- Navigation may be normalized. Page bodies must match the source rendered result and content without becoming mechanical HTML dumps.
 - `DESIGN.md` may assist with tokens and interpretation, but it must not override concrete source HTML visuals, DOM, CSS, images, icons, backgrounds, or layout.
+- Do not create or rely on local mechanical conversion scripts such as `scripts/generate-from-stitch.mjs` or `tools/convert-html-to-vue.mjs`.
 
 ## High-Fidelity Replica Rules
 
 The highest principle is:
 
 ```txt
-Navigation may be normalized. Everything else must be replicated from the source HTML as literally as possible.
+Preserve the source visual result, but implement it as clean, maintainable Vue code.
 ```
+
+High fidelity means matching the source visual result, not mechanically copying source markup.
+
+Visual fidelity and maintainability must be balanced. When source HTML is messy, preserve the visual result and content, but rewrite the implementation into clean Vue structure.
 
 Conversion priority:
 
 1. User request.
-2. Source HTML DOM, CSS, images, icons, backgrounds, and layout.
-3. Inline styles, `<style>` tags, class styles, and linked CSS.
-4. `DESIGN.md`.
-5. Vue organization and component abstraction.
+2. Source rendered visual result, content, assets, layout, section order, hero composition, and interaction intent.
+3. Source HTML DOM, inline styles, `<style>` tags, class styles, and linked CSS as evidence.
+4. `DESIGN.md` as supporting design-system guidance.
+5. Clean Vue SFC structure, components, router, and maintainable CSS.
 
 `DESIGN.md` is a supporting reference only. Use it to understand design tokens, colors, spacing, typography, and intent, but never use it to replace or redesign visuals that are concretely present in HTML/CSS/assets.
 
-For page bodies, perform a 1:1 conversion of the source body:
+For page bodies, match the rendered page, not the messy export implementation:
 
 - Preserve section count, order, and hierarchy.
 - Preserve card, list, image, icon, button, badge, divider, and decorative-layer counts.
 - Preserve text content except for explicit user changes or obvious export mistakes.
 - Preserve hero composition, background layers, overlays, masks, gradients, z-index, position, gaps, margins, padding, radius, shadows, and responsive behavior.
 - Preserve image/icon placement, proportions, crops, object-fit, masks, opacity, and layering.
-- Preserve layout mechanics such as flex/grid structure, absolute positioning, sticky/fixed positioning, width constraints, and first-fold composition.
-- Keep component abstraction subordinate to fidelity. When there is a conflict between maintainability and visual fidelity, visual fidelity wins.
+- Preserve layout mechanics when they affect the rendered result, such as flex/grid structure, absolute positioning, sticky/fixed positioning, width constraints, and first-fold composition.
+- Rewrite messy DOM into clean Vue templates when doing so preserves final visual output and content.
+- Rename classes, organize styles, data-drive repeated structures, and extract components when this improves maintainability without changing the rendered result.
+
+## Mechanical Conversion Script Boundary
+
+Do not use a local deterministic conversion script as the main HTML-to-Vue conversion method.
+
+Forbidden:
+
+- Creating `scripts/generate-from-stitch.mjs`.
+- Creating `tools/convert-html-to-vue.mjs`.
+- Using a Node script to batch extract `body` or `style` blocks and generate Vue pages.
+- Using a script to paste raw `<body>` content into `.vue` files.
+- Using a script to mechanically remove headers and output views.
+- Using regex-only page conversion as the main conversion approach.
+- Leaving temporary conversion scripts in the project.
+- Making users maintain generated conversion scripts after the project is created.
+
+Allowed:
+
+- Use commands to inspect files.
+- Use search commands to locate source HTML, CSS, assets, and issues.
+- Use formatting tools.
+- Use build commands for verification.
+- Use small one-off checks for validation, but do not delegate page conversion to a local mechanical script.
 
 ## Project Creation Rules
 
@@ -418,6 +448,147 @@ Style rules:
 - Do not pile up meaningless inline styles.
 - Do not sacrifice visual fidelity for shorter code.
 - Do not ignore `DESIGN.md`.
+- In `src/styles/main.css`, hide the browser's default vertical scrollbar without disabling normal page scrolling. Preserve mouse wheel, trackpad, keyboard, and mobile touch scrolling. Do not use `overflow: hidden` to hide scrollbars, and do not change the original layout or scrolling feel.
+
+Recommended global scrollbar CSS:
+
+```css
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+```
+
+If the page's actual scroll container is not `body`, apply the same scrollbar-hiding rules to the real scroll container without breaking scrolling.
+
+## Maintainable Vue Conversion Strategy
+
+Each HTML page must be converted through structured rewriting, not mechanical copying.
+
+The source HTML is the design and content source, not the final code shape.
+
+Conversion flow:
+
+1. Read the original HTML page.
+2. Extract page structure: hero, sections, cards, images, icons, buttons, CTA, footer, and decorative layers.
+3. Extract visual rules: colors, spacing, layout, backgrounds, gradients, radius, shadows, typography, and responsive behavior.
+4. Extract runtime assets: images, SVGs, icons, backgrounds, fonts, and videos.
+5. Reorganize into Vue SFCs with clear `<template>`, necessary `<script setup lang="ts">`, clean scoped or global CSS, reusable components, and maintainable data structures.
+6. Preserve the original rendered visual result.
+7. Clean HTML export noise that is unsuitable for Vue.
+8. Run `pnpm build` to verify.
+
+## Vue SFC Quality Requirements
+
+Generated `.vue` files must satisfy:
+
+- Clear template hierarchy.
+- Clear semantic class names.
+- No massive unreadable raw HTML blocks.
+- No duplicate attributes.
+- No meaningless wrapper piles.
+- No invalid Vue templates.
+- No local absolute paths.
+- No garbled file names.
+- No `.html` routes.
+- No iframe.
+- No whole-page `v-html`.
+- Page structure remains easy to modify.
+- Style structure remains easy to maintain.
+- Component boundaries are reasonable.
+- Image, icon, and background paths are clear.
+- Important sections use semantic classes or concise comments.
+- Repeated cards may be rendered from arrays if the visual result is unchanged.
+- Repeated modules may be extracted into components, but not over-abstracted.
+
+Recommended shape:
+
+```vue
+<template>
+  <section class="page-hero">
+    ...
+  </section>
+
+  <section class="feature-section">
+    ...
+  </section>
+</template>
+
+<script setup lang="ts">
+const features = [
+  ...
+]
+</script>
+
+<style scoped>
+.page-hero {
+  ...
+}
+</style>
+```
+
+Do not generate:
+
+```vue
+<template>
+  <div>
+    <!-- massive raw copied HTML with hundreds of unstructured classes -->
+  </div>
+</template>
+```
+
+## Componentization Rules
+
+Use components to improve maintainability only when they preserve the rendered result.
+
+Allowed componentization:
+
+- Unified navigation header.
+- Footer.
+- Base button.
+- Base card.
+- Repeated feature card.
+- Repeated statistic card.
+- Repeated product card.
+- Repeated case card.
+- Section component.
+
+Requirements:
+
+- Componentization must not change visuals.
+- Componentization must not delete content.
+- Componentization must not simplify images.
+- Componentization must not reduce card counts.
+- Component props must be clear.
+- Repeated data may live in arrays.
+- Pages must remain readable.
+- Do not turn the page into an over-complex component architecture.
+
+## Vue Template Legality Cleanup
+
+Every generated `.vue` template must be legal Vue, without relying on mechanical conversion scripts.
+
+Check and fix:
+
+- Duplicate attributes.
+- Multiple `class` attributes by merging them.
+- Multiple `style` attributes by merging them.
+- Multiple `alt` attributes by keeping the most specific one.
+- Illegal attributes.
+- Inline events that must be converted or removed.
+- `<script>` tags that must not appear directly in templates.
+- SVG attributes that need Vue-compatible naming.
+- Boolean attributes.
+
+`pnpm build` must pass. Do not fix compile errors by deleting images, deleting sections, or deleting the main page body.
 
 ## Asset Path Handling
 
@@ -441,13 +612,23 @@ Rules:
 - If an asset exists in outer `public/` and the Vue page needs it, copy only that necessary static asset into the inner Vue project.
 - Prefer copying runtime static assets into `<inner>/public/assets/` for URL-addressed files, or `src/assets/` when imported by Vue/CSS.
 - Rewrite every copied asset reference so runtime and build paths resolve inside the inner Vue project.
+- Preserve images from the source HTML.
+- Preserve icons from the source HTML.
+- Preserve source `background-image` assets.
+- Remote image URLs may be preserved when appropriate and must be reported.
+- Local images must be copied into a clear inner Vue project location.
 - Allowed copied assets include images, SVGs, fonts, videos, favicon files, and similar runtime static assets.
 - Do not copy `.html` or `.md` source files.
 - Do not copy `DESIGN.md` into the inner project.
 - Do not make final pages depend on outer `.html` files.
 - Do not invent missing images or assets.
+- Do not use placeholder images instead of real source images.
+- Do not replace icons with emoji.
+- Do not replace real icons with CSS squares, boxes, or placeholder shapes.
+- Do not lose images just because the Vue code was restructured.
 - Do not leave invalid paths that break build or runtime rendering.
 - Do not leave local machine paths such as `E:\...`, `D:\...`, `C:\...`, or `file://...` in generated Vue code.
+- Do not preserve garbled asset paths.
 - Do not silently delete or omit referenced assets.
 - If an asset is missing, list it in the final report.
 - If an asset is remote, preserve it only when appropriate and report it; otherwise copy/download only with user permission or explicit project policy.
@@ -455,7 +636,9 @@ Rules:
 
 ## Source CSS Preservation Rules
 
-Read and preserve source CSS from:
+Preserve visual effect, organize CSS cleanly.
+
+Read source CSS from:
 
 - `<style>` tags.
 - inline `style` attributes.
@@ -464,16 +647,21 @@ Read and preserve source CSS from:
 - classes and selectors used by source DOM.
 - media queries, keyframes, variables, fonts, pseudo-elements, masks, gradients, filters, transforms, transitions, and responsive rules.
 
-Convert source CSS into the Vue project without changing the visual result:
+Understand what each CSS source contributes visually. Then organize it into clean Vue project CSS without changing the rendered result:
 
 - Put reusable tokens and base rules in `src/styles/variables.css` and `src/styles/main.css`.
 - Put layout-level shared rules in `src/styles/layout.css`.
 - Put page-specific converted rules in each `.vue` file's scoped or module-local style when appropriate.
-- Preserve selectors and class intent when it helps fidelity.
+- Rename classes when it improves clarity.
+- Remove invalid, duplicated, or no-op export noise only when it does not affect visual output.
 - Do not ignore HTML CSS because `DESIGN.md` exists.
+- Do not paste raw CSS back into Vue without organization when it creates unmaintainable styles.
+- Do not remove CSS that affects the rendered result.
 - Do not simplify CSS if simplification changes layout, spacing, colors, backgrounds, shadows, masks, gradients, typography, or responsive behavior.
+- Do not ignore responsive styles.
+- Do not lose backgrounds, masks, gradients, shadows, radius, opacity, blur, transform, animation, or other visual effects.
 
-## Literal Conversion Strategy
+## Structured Conversion Strategy
 
 Before converting, build these inventories from the source:
 
@@ -484,14 +672,25 @@ Before converting, build these inventories from the source:
 
 Convert in this order:
 
-1. Migrate the source body DOM into Vue template structure.
-2. Replace navigation links with Vue Router links.
-3. Rewrite asset paths.
-4. Fix Vue template legality.
-5. Extract only minimal components that do not change the visual output.
+1. Analyze source HTML structure and visual hierarchy.
+2. Identify reusable page sections and repeated data.
+3. Preserve the rendered layout, content, assets, and visual hierarchy.
+4. Rewrite the page as clean Vue SFC code.
+5. Normalize header/navigation into shared Vue Router component.
+6. Organize CSS into scoped styles and shared variables.
+7. Rewrite asset paths.
+8. Run Vue template legality cleanup.
+9. Run `pnpm build`.
+10. Compare generated page with source HTML/screenshots.
 
 Forbidden conversion strategies:
 
+- Direct body dumps.
+- Mechanical conversion.
+- Batch-generating unreadable Vue files with scripts.
+- Regex-only HTML replacement.
+- Preserving only text while losing visuals.
+- Preserving visuals while ignoring Vue maintainability.
 - Redesigning from overall impression.
 - Rebuilding from `DESIGN.md` while ignoring concrete HTML/CSS.
 - Replacing the source page with abstract marketing cards.
@@ -653,18 +852,20 @@ Convert each HTML page into a real `.vue` page.
 
 Requirements:
 
-- Preserve the source body DOM structure as literally as possible.
+- Analyze the source body structure, then rewrite it as clean Vue SFC code.
+- Preserve the rendered visual result, content, asset usage, section order, and hierarchy.
 - Preserve all major and minor sections unless explicitly broken.
 - Preserve source copy except explicit user changes or obvious export mistakes.
 - Preserve card, image, icon, button, badge, divider, and decorative-layer counts.
-- Preserve source CSS, inline styles, style-tag rules, linked CSS effects, backgrounds, masks, gradients, overlays, z-index, positioning, spacing, radius, shadows, and responsive behavior.
+- Preserve the visual effects of source CSS, inline styles, style-tag rules, linked CSS, backgrounds, masks, gradients, overlays, z-index, positioning, spacing, radius, shadows, and responsive behavior.
 - Preserve design hierarchy from the source HTML/CSS/assets.
 - Correct obvious source errors.
 - Remove export noise and redundant wrappers only when they do not affect visual output.
 - Replace static HTML with Vue templates.
 - Componentize repeated structures only when it does not change the visual result.
-- When there is a conflict between maintainability and visual fidelity, visual fidelity wins.
+- Do not sacrifice Vue maintainability for mechanical fidelity.
 - Do not put an entire HTML page into Vue unchanged.
+- Do not dump extracted body HTML directly into Vue views.
 - Do not use HTML injection.
 - Do not use iframe.
 
@@ -684,6 +885,7 @@ At minimum create:
 
 Create additional base or section components when they preserve clarity and fidelity.
 Do not over-componentize page bodies if doing so changes DOM order, CSS applicability, layout, or visual fidelity.
+Use components to improve maintainability only when they preserve the rendered result.
 
 ### Step 10: Fix Asset Paths
 
@@ -723,6 +925,21 @@ pnpm dev
 
 Do not tell them to run `pnpm dev` from the outer source root.
 
+## Generation Failure Recovery
+
+Do not report success if the generated Vue project cannot build or run.
+
+Rules:
+
+- If generation fails, do not leave an unusable half-finished project and report success.
+- If `pnpm build` fails, the task is not complete.
+- If files created during this generation are wrong, fix or clean them.
+- If the same-name Vue project was created during the current run and generation cannot be repaired, it may be cleaned up as current-run generated content.
+- Do not delete outer `public/`.
+- Do not delete original Stitch export files.
+- Do not delete a user-existing Vue project.
+- Always report the failure reason and verification state.
+
 ## Verification Checklist
 
 Before reporting completion, confirm:
@@ -735,16 +952,24 @@ Before reporting completion, confirm:
 - No `.html` route was created.
 - No iframe displays Stitch HTML.
 - No whole-page `v-html` or raw HTML injection is used.
+- Generated Vue files are maintainable SFCs, not raw HTML dumps.
+- No deterministic conversion script was used.
+- No generated page is just extracted body HTML wrapped in a template.
+- Duplicate attributes were checked.
 - Navigation is shared through one component.
 - Active route state exists.
 - `DESIGN.md` informed the CSS variables and style system.
 - Asset references are valid or reported as missing.
+- Asset paths were checked.
 - Source DOM, CSS, and asset inventories were used during conversion.
 - Page body section/card/image/icon/button counts match the source unless explicitly reported.
 - Source backgrounds, masks, gradients, overlays, and decorative layers were preserved unless explicitly reported.
 - First fold composition and key spacing were compared against the source HTML or screenshots when available.
 - `DESIGN.md` did not override concrete source HTML/CSS/assets.
+- Components were extracted only when useful.
+- CSS was organized cleanly.
 - `pnpm install` and `pnpm build` were run or explicitly marked skipped with reasons.
+- `pnpm build` passed before reporting success.
 
 ## Final Report Format
 
@@ -766,11 +991,19 @@ After successful execution, report:
 - No HTML or MD source files were copied. Source files were used as input only.
 - Static assets copied: ...
 
-### Source Replica Fidelity
-- Mode: high-fidelity / 1:1 source replica
-- Navigation normalized only: yes / no
+### Conversion Approach
+- Mode: high-fidelity maintainable Vue conversion
+- Mechanical script used: no
+- Page bodies manually structured as Vue SFC: yes
+- Navigation normalized: yes
 - Page body redesigned: no
-- `DESIGN.md` used to override concrete HTML visuals: no
+
+### Vue Maintainability
+- SFC structure checked: yes / no
+- Components extracted: ...
+- Repeated data normalized: ...
+- Scoped styles organized: yes / no
+- Template legality checked: yes / no
 
 ### Source DOM Preservation
 - Body DOM inventory created: yes / no
@@ -873,6 +1106,9 @@ No files were changed.
 - Do not link to Stitch HTML.
 - Do not redirect to Stitch HTML.
 - Do not use whole-page HTML injection.
+- Do not dump raw `<body>` content directly into Vue views.
+- Do not dump extracted body HTML directly into Vue views.
+- Do not create generated `.vue` files that are merely wrapped raw HTML.
 - Do not keep `.html` as final pages.
 - Do not create `/products.html`, `/code.html`, `/首页.html`, or similar routes.
 - Do not copy `.html` or `.md` source files into the inner Vue project.
@@ -885,6 +1121,15 @@ No files were changed.
 - Do not use `DESIGN.md` to override concrete HTML visuals.
 - Do not build only the home page when multiple HTML files exist.
 - Do not mechanically copy obviously wrong navigation text, links, titles, or routes.
+- Do not use a local deterministic conversion script as the main HTML-to-Vue conversion method.
+- Do not use a local script to mechanically convert HTML to Vue.
+- Do not create `scripts/generate-from-stitch.mjs`.
+- Do not create `tools/convert-html-to-vue.mjs`.
+- Do not use Node scripts to batch extract body/style and generate Vue pages.
+- Do not rely on regex-only conversion for pages.
+- Do not leave temporary conversion scripts in the project.
+- Do not create unreadable Vue files that are just copied HTML.
+- Do not preserve messy export markup at the cost of Vue maintainability.
 - Do not assume the normalized page names are `首页`, `产品中心`, `解决方案`, `项目案例`, `服务体系`, or `关于我们`.
 - Do not assume the normalized page names are `Home`, `Products`, `Solutions`, `Cases`, `Services`, or `About`.
 - Do not assume there are exactly 6 pages.
@@ -894,6 +1139,7 @@ No files were changed.
 - Do not modify unrelated files.
 - Do not break visual fidelity merely to make code shorter.
 - Do not prioritize component abstraction over fidelity.
+- Do not sacrifice Vue maintainability for mechanical fidelity.
 - Do not invent nonexistent asset files.
 - Do not silently ignore missing assets.
 - Do not redesign the page body.
@@ -907,3 +1153,14 @@ No files were changed.
 - Do not simplify spacing in a way that changes the visual result.
 - Do not create pages based only on text when exact DOM, CSS, and assets exist.
 - Do not generate approximate pages when exact DOM, CSS, and assets exist.
+- Do not create approximate pages that ignore source assets.
+- Do not leave duplicate attributes in generated Vue templates.
+- Do not remove images to fix template errors.
+- Do not remove sections to simplify conversion.
+- Do not report success if `pnpm build` fails.
+- Do not use `DESIGN.md` to redesign the page away from the source.
+- Do not over-componentize into an unreadable architecture.
+- Do not under-componentize into one massive unmaintainable template.
+- Do not hide scrollbars with `overflow: hidden`.
+- Do not make the page unable to scroll while hiding scrollbars.
+- Do not introduce horizontal scrollbars.
